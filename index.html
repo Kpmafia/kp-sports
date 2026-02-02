@@ -78,7 +78,7 @@ display:flex;align-items:center;gap:1rem;
 width:8px;height:8px;border-radius:50%;
 background:red;animation:pulse 1.5s infinite;
 }
-@keyframes pulse{0%,100{opacity:1}50{opacity:.3}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
 .matches-grid{
 display:grid;
@@ -138,7 +138,7 @@ opacity:.7;
 </h2>
 
 <div class="matches-grid" id="matches">
-<!-- Live scores will load here -->
+<p>Loading live scores...</p>
 </div>
 
 <div class="telegram">
@@ -150,47 +150,59 @@ opacity:.7;
 
 <footer>
 <p>
-KP Sports is an independent cricket news & live score website. <br>
-Not affiliated with BCCI, ICC, IPL or any official board. <br>
+KP Sports is an independent cricket news & live score website.<br>
+Not affiliated with BCCI, ICC, IPL or any official board.<br>
 Scores provided via licensed third-party APIs.
 </p>
 <p style="margin-top:.5rem">© 2026 KP Sports</p>
 </footer>
 
 <script>
-// 🔑 ADD YOUR CRICAPI KEY HERE
-const API_KEY = "61f70a1d-ad67-476d";
+// 🔑 APNI REAL CRICAPI KEY YAHA DAALO
+const API_KEY = "YOUR_API_KEY_HERE";
+
+// ✅ FIXED API URL (string + template literal)
 const API_URL = `https://api.cricapi.com/v1/currentMatches?apikey=${API_KEY}&offset=0`;
 
 async function loadLiveScores(){
-try{
-const res = await fetch(API_URL);
-const json = await res.json();
+  try{
+    const res = await fetch(API_URL);
+    const json = await res.json();
 
-const container = document.getElementById("matches");
-container.innerHTML = "";
+    const container = document.getElementById("matches");
+    container.innerHTML = "";
 
-if(!json.data) return;
+    if(!json.data || json.data.length === 0){
+      container.innerHTML = "<p>No live matches right now</p>";
+      return;
+    }
 
-json.data.slice(0,4).forEach(match=>{
-container.innerHTML += `
-<div class="match-card">
-<h3>${match.name}</h3>
-<p>${match.teams[0]}: <strong>${match.score?.[0]?.r ?? "-"} / ${match.score?.[0]?.w ?? ""}</strong></p>
-<p>${match.teams[1]}: <strong>${match.score?.[1]?.r ?? "-"} / ${match.score?.[1]?.w ?? ""}</strong></p>
-<p style="margin-top:.8rem;color:var(--glow-purple)">
-${match.status}
-</p>
-</div>
-`;
-});
-}catch(e){
-console.log("Score load error",e);
-}
+    json.data.slice(0,4).forEach(match=>{
+      container.innerHTML += `
+        <div class="match-card">
+          <h3>${match.name ?? "Match"}</h3>
+          <p>${match.teams?.[0] ?? ""} :
+            <strong>${match.score?.[0]?.r ?? "-"} / ${match.score?.[0]?.w ?? "-"}</strong>
+          </p>
+          <p>${match.teams?.[1] ?? ""} :
+            <strong>${match.score?.[1]?.r ?? "-"} / ${match.score?.[1]?.w ?? "-"}</strong>
+          </p>
+          <p style="margin-top:.8rem;color:var(--glow-purple)">
+            ${match.status ?? ""}
+          </p>
+        </div>
+      `;
+    });
+
+  }catch(err){
+    console.error("Live score error:", err);
+    document.getElementById("matches").innerHTML =
+      "<p>Unable to load live scores</p>";
+  }
 }
 
 loadLiveScores();
-setInterval(loadLiveScores,30000);
+setInterval(loadLiveScores, 30000); // refresh every 30 sec
 </script>
 
 </body>
