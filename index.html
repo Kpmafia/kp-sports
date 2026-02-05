@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KANHAX | Live Fully, Live Simply</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #ffffff, #a0a0a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+        }
+
+        .hero-title {
+            font-size: 6rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #ffffff, #cccccc, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 2rem;
+            color: #d1d5db;
+            margin-bottom: 1rem;
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            color: #9ca3af;
+            margin-bottom: 2rem;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: #d1d5db;
+            max-width: 700px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #1a1a1a, #404040);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            background: linear-gradient(to right, #2a2a2a, #505050);
+        }
+
+        .btn-secondary {
+            border: 2px solid #ffffff;
+            color: white;
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .quote-box {
+            margin-top: 4rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 700px;
+        }
+
+        .quote-box p {
+            color: #d1d5db;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffffff, #cccccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Life Rules Grid */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .rule-card {
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .rule-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .rule-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .rule-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .rule-desc {
+            color: #9ca3af;
+        }
+
+        /* Manifestation Cards */
+        .manifest-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .manifest-card {
+            padding: 2.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s;
+        }
+
+        .manifest-card:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .manifest-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .manifest-desc {
+            color: #d1d5db;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Goals Grid */
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .goal-card {
+            padding: 2.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .goal-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .goal-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .goal-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .goal-desc {
+            color: #9ca3af;
+        }
+
+        /* Daily Thought */
+        .thought-box {
+            padding: 4rem 3rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .thought-label {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .thought-text {
+            font-size: 2rem;
+            font-weight: 300;
+            color: white;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .thought-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Rituals */
+        .rituals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .ritual-card {
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            border: 1px solid;
+        }
+
+        .ritual-card.morning {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(234, 179, 8, 0.2));
+            border-color: rgba(249, 115, 22, 0.3);
+        }
+
+        .ritual-card.night {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(168, 85, 247, 0.2));
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .ritual-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .ritual-card ul {
+            list-style: none;
+        }
+
+        .ritual-card li {
+            color: #d1d5db;
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .ritual-card li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        /* Wisdom Section */
+        .wisdom-box {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(0, 0, 0, 0.95);
+        }
+
+        .wisdom-box p {
+            color: #9ca3af;
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .wisdom-box .highlight {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .thought-text {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Life Compass */
+        .compass-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .compass-item {
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 0.5rem;
+        }
+
+        .basics-box {
+            margin-top: 3rem;
+            padding: 2.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .basics-title {
+            font-size: 1.3rem;
+            color: #d1d5db;
+            margin-bottom: 1rem;
+        }
+
+        .basics-actions {
+            font-size: 1.1rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">KANHAX</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#rules">Rules</a></li>
+                <li><a href="#manifest">Manifest</a></li>
+                <li><a href="#goals">Goals</a></li>
+                <li><a href="#daily">Daily</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-title">KANHAX</div>
+        <div class="hero-subtitle">Live Your Best Life</div>
+        <div class="hero-tagline">Live fully. Live simply. Live with purpose.</div>
+        <p class="hero-description">
+            Real growth hoti hai chhote kadam se. Ye website tumhare liye hai - 
+            clarity ke liye, focus ke liye, aur ek better life build karne ke liye.
+        </p>
+        <div class="hero-buttons">
+            <a href="#rules" class="btn btn-primary">Start Journey</a>
+            <a href="#daily" class="btn btn-secondary">Daily Thought</a>
+        </div>
+        <div class="quote-box">
+            <p>"Jab choices clear hoti hain, life simple ho jati hai. Next right thing karo - bas repeat karo."</p>
+        </div>
+    </section>
+
+    <!-- Life Rules Section -->
+    <section id="rules">
+        <h2 class="section-title">Life Rules</h2>
+        <p class="section-subtitle">Practical rules jo loud days aur quiet days dono pe kaam kare</p>
+        
+        <div class="rules-grid">
+            <div class="rule-card">
+                <div class="rule-number">01</div>
+                <h3 class="rule-title">Subah jaldi utho</h3>
+                <p class="rule-desc">5 AM club. Duniya shuru hone se pehle apna din shuru karo.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">02</div>
+                <h3 class="rule-title">Apni energy protect karo</h3>
+                <p class="rule-desc">Negative log, toxic content - door raho.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">03</div>
+                <h3 class="rule-title">Consistency > Intensity</h3>
+                <p class="rule-desc">Har din thoda, saal bhar karo. Results guaranteed.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">04</div>
+                <h3 class="rule-title">Kam karo, achha karo</h3>
+                <p class="rule-desc">10 cheezon mein average se 3 cheezon mein master better hai.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">05</div>
+                <h3 class="rule-title">Apne promises rakho</h3>
+                <p class="rule-desc">Khud se kiye vaade sabse important hain.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">06</div>
+                <h3 class="rule-title">Shortcuts se bacho</h3>
+                <p class="rule-desc">Quick fix kabhi permanent solution nahi hota.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">07</div>
+                <h3 class="rule-title">Focus daily train karo</h3>
+                <p class="rule-desc">Meditation, reading, deep work - kuch bhi choose karo.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">08</div>
+                <h3 class="rule-title">Circle choose karo carefully</h3>
+                <p class="rule-desc">5 logo ka average tum ho. Soch samajh ke chuno.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">09</div>
+                <h3 class="rule-title">Health first. Always.</h3>
+                <p class="rule-desc">Paise se health nahi, health se sab kuch mil sakta hai.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">10</div>
+                <h3 class="rule-title">Pehle save, phir spend</h3>
+                <p class="rule-desc">Emergency fund = peace of mind.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">11</div>
+                <h3 class="rule-title">Roz kuch seekho</h3>
+                <p class="rule-desc">Book, podcast, experience - kuch bhi. Growth ruko mat.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">12</div>
+                <h3 class="rule-title">Silence = Strength</h3>
+                <p class="rule-desc">Har baat pe react mat karo. Observe karo, absorb karo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manifestation Section -->
+    <section id="manifest" style="background: rgba(15, 23, 42, 0.5);">
+        <h2 class="section-title">Manifestation (Real Talk)</h2>
+        <p class="section-subtitle">Magic nahi. Practical thinking + aligned action. Ye formula kaam karta hai.</p>
+        
+        <div class="manifest-cards">
+            <div class="manifest-card">
+                <h3 class="manifest-title">🎯 1. Clear Goal</h3>
+                <p class="manifest-desc">
+                    Ek specific goal likho. Vague nahi - crystal clear. 
+                    '10kg weight loss in 6 months' not just 'fit hona hai'.
+                </p>
+            </div>
+            
+            <div class="manifest-card">
+                <h3 class="manifest-title">❤️ 2. Feel It</h3>
+                <p class="manifest-desc">
+                    Imagine karo jaise already mil gaya. Emotion feel karo. 
+                    Brain ko signal do ki ye possible hai.
+                </p>
+            </div>
+            
+            <div class="manifest-card">
+                <h3 class="manifest-title">⚡ 3. Daily Action</h3>
+                <p class="manifest-desc">
+                    Har din ek chhota step. Manifestation ka matlab sirf sochna nahi - karna hai. 
+                    Action se outcome aata hai.
+                </p>
+            </div>
+        </div>
+
+        <div class="quote-box" style="margin-top: 3rem;">
+            <p><strong style="color: #c084fc;">Yaad rakho:</strong> Manifestation outcome hai focus, practice, 
+            aur decisions ko repeatedly follow karne ka. Magic nahi, mehnat hai.</p>
+        </div>
+    </section>
+
+    <!-- Life Goals Section -->
+    <section id="goals">
+        <h2 class="section-title">Life Goals</h2>
+        <p class="section-subtitle">Direction > Speed. Sahi raaste pe chalo, baaki sab ho jayega.</p>
+        
+        <div class="goals-grid">
+            <div class="goal-card">
+                <div class="goal-icon">❤️</div>
+                <h3 class="goal-title">Sehat</h3>
+                <p class="goal-desc">Strong body, calm mind, long life</p>
+            </div>
+            
+            <div class="goal-card">
+                <div class="goal-icon">📈</div>
+                <h3 class="goal-title">Daulat</h3>
+                <p class="goal-desc">Financial freedom, not just paisa</p>
+            </div>
+            
+            <div class="goal-card">
+                <div class="goal-icon">🎯</div>
+                <h3 class="goal-title">Kaam</h3>
+                <p class="goal-desc">Skill over degree, passion over paycheck</p>
+            </div>
+            
+            <div class="goal-card">
+                <div class="goal-icon">🏠</div>
+                <h3 class="goal-title">Ghar</h3>
+                <p class="goal-desc">Safe place, peaceful vibes</p>
+            </div>
+            
+            <div class="goal-card">
+                <div class="goal-icon">🌅</div>
+                <h3 class="goal-title">Travel</h3>
+                <p class="goal-desc">Experiences > Things</p>
+            </div>
+            
+            <div class="goal-card">
+                <div class="goal-icon">📚</div>
+                <h3 class="goal-title">Gyaan</h3>
+                <p class="goal-desc">Never stop learning</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 4rem; padding: 2.5rem; background: linear-gradient(to right, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2)); border-radius: 1.5rem; border: 1px solid rgba(168, 85, 247, 0.3);">
+            <h3 class="section-title" style="font-size: 1.8rem; margin-bottom: 2rem;">Life Compass</h3>
+            <div class="compass-grid">
+                <div class="compass-item">
+                    <p style="color: #d1d5db;">Kya ye peace deta hai?</p>
+                </div>
+                <div class="compass-item">
+                    <p style="color: #d1d5db;">Kya ye skill build karta hai?</p>
+                </div>
+                <div class="compass-item">
+                    <p style="color: #d1d5db;">Kya ye time bachata hai?</p>
+                </div>
+                <div class="compass-item">
+                    <p style="color: #d1d5db;">Kya ye noise kam karta hai?</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; color: #9ca3af; font-style: italic;">
+                Confused ho toh yahan wapas aao. Ye questions tumhe guide karenge.
+            </p>
+        </div>
+    </section>
+
+    <!-- Daily Thought Section -->
+    <section id="daily" style="background: rgba(15, 23, 42, 0.5);">
+        <h2 class="section-title">Aaj Ka Vichar</h2>
+        <p class="section-subtitle">Ek line. No hype. Bas kuch solid jo aaj carry kar sako.</p>
+        
+        <div class="thought-box">
+            <div class="thought-label">— TODAY —</div>
+            <p class="thought-text" id="dailyThought">Subah ki shanti se din ki clarity milti hai.</p>
+            <div class="thought-buttons">
+                <button class="btn btn-primary" onclick="generateNewThought()">New Thought</button>
+                <button class="btn btn-secondary" onclick="copyThought()">Copy</button>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+            <div style="padding: 2rem; background: rgba(30, 41, 59, 0.5); border-radius: 1rem; border: 1px solid rgba(168, 85, 247, 0.2);">
+                <h3 style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; color: #c084fc;">Kaise use karo</h3>
+                <ul style="list-style: none; color: #d1d5db;">
+                    <li style="margin-bottom: 0.5rem;">• Ek thought choose karo</li>
+                    <li style="margin-bottom: 0.5rem;">• Ek action decide karo</li>
+                    <li>• Din noise mein doobne se pehle kar do</li>
+                </ul>
+            </div>
+            
+            <div style="padding: 2rem; background: rgba(168, 85, 247, 0.1); border-radius: 1rem; border: 1px solid rgba(168, 85, 247, 0.3);">
+                <h3 style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; color: white;">Chhota Rule</h3>
+                <p style="color: #d1d5db; font-size: 1.1rem; font-style: italic;">
+                    "Agar kisi cheez ki cost tumhari peace hai, toh wo bahut mehengi hai. Mat lo."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Morning & Night Rituals -->
+    <section>
+        <div class="rituals-grid">
+            <div class="ritual-card morning">
+                <h3 class="ritual-title">🌅 Subah Ka Routine</h3>
+                <ul>
+                    <li>5-6 AM: Utho (no snooze)</li>
+                    <li>Paani piyo, stretch karo</li>
+                    <li>10 min meditation/gratitude</li>
+                    <li>Priority task pehle karo</li>
+                    <li>Phone baad mein check karo</li>
+                </ul>
+            </div>
+            
+            <div class="ritual-card night">
+                <h3 class="ritual-title">🌙 Raat Ka Routine</h3>
+                <ul>
+                    <li>Screen 9 PM ke baad band</li>
+                    <li>Din ka reflection karo</li>
+                    <li>Kal ki light planning</li>
+                    <li>Book padho ya journal</li>
+                    <li>10 PM: Sleep (non-negotiable)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="basics-box">
+            <p class="basics-title">Jab sab kuch heavy lage, basics pe wapas aao:</p>
+            <p class="basics-actions">Achha khao • Move your body • Ek hard thing karo • Jaldi soyo</p>
+        </div>
+    </section>
+
+    <!-- Wisdom Section -->
+    <section class="wisdom-box">
+        <p>Trees grow quietly.</p>
+        <p>Rivers move forward.</p>
+        <p>Mountains stay patient.</p>
+        <p class="highlight">So should you.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p style="margin-bottom: 0.5rem;">KANHAX — Jab life loud ho, yahan wapas aao.</p>
+        <p style="font-size: 0.9rem;">Built with focus, discipline, and love.</p>
+    </footer>
+
+    <script>
+        const dailyThoughts = [
+            "Subah ki shanti se din ki clarity milti hai.",
+            "Chhoti mehnat, badi jeet. Consistency is everything.",
+            "Jo aaj kar sakte ho, kal pe mat chodo.",
+            "Peace > Perfection. Calm mind wins always.",
+            "Apne vaade nibhao - khud se pehle.",
+            "Focus ek superpower hai. Train it daily.",
+            "Simplicity mein strength hai.",
+            "Slow progress bhi progress hai.",
+            "Energy bachao, noise se door raho.",
+            "Health se bada koi investment nahi.",
+            "Silence mein answers milte hain.",
+            "Discipline = Freedom ka shortcut.",
+            "Strong roots, strong life.",
+            "Less is more. Quality over quantity.",
+            "Apni morning control karo, din apna hoga."
+        ];
+
+        function generateNewThought() {
+            const randomThought = dailyThoughts[Math.floor(Math.random() * dailyThoughts.length)];
+            document.getElementById('dailyThought').textContent = randomThought;
+        }
+
+        function copyThought() {
+            const thought = document.getElementById('dailyThought').textContent;
+            navigator.clipboard.writeText(thought).then(() => {
+                const btn = event.target;
+                btn.textContent = 'Copied! ✓';
+                setTimeout(() => {
+                    btn.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+
+        // Set daily thought on load
+        window.onload = function() {
+            const today = new Date().getDate();
+            const thoughtIndex = today % dailyThoughts.length;
+            document.getElementById('dailyThought').textContent = dailyThoughts[thoughtIndex];
+        };
+    </script>
+</body>
+</html>
