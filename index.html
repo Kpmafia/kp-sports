@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>kanhaxi — High-Performance Web Dev &amp; Telegram Bots</title>
+  <meta name="description" content="Portfolio of Kanha (kanhaxi) — Developer building fast responsive websites and 24/7 reliable Telegram bots." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Dynamic Cursor Light Glow -->
+<div id="cursor-glow"></div>
+
+<!-- Background Canvas, Aurora & CRT FX -->
+<div class="aurora-bg">
+  <div class="aurora-orb aurora-orb-1"></div>
+  <div class="aurora-orb aurora-orb-2"></div>
+  <div class="aurora-orb aurora-orb-3"></div>
+</div>
+<canvas id="bgcanvas"></canvas>
+<div class="signal-grid"></div>
+<div class="sweep"></div>
+<div class="scanlines"></div>
+<div class="grain"></div>
+
+<!-- Navbar -->
+<nav>
+  <div class="brand">
+    <span class="dots"><span></span><span></span><span></span></span>
+    <span class="path">~/</span><span class="name">kanhaxi</span><span class="blink">_</span>
+  </div>
+  
+  <div class="nav-center">
+    <a href="#about"><span class="num">01.</span>about</a>
+    <a href="#services"><span class="num">02.</span>services</a>
+    <a href="#simulator"><span class="num">03.</span>bot-sim</a>
+    <a href="#work"><span class="num">04.</span>work</a>
+    <a href="#estimator"><span class="num">05.</span>estimator</a>
+  </div>
+
+  <div class="nav-actions">
+    <button class="ctrl-btn" id="sound-toggle" title="Toggle audio feedback">🔇 Sound: OFF</button>
+    <button class="ctrl-btn active" id="crt-toggle" title="Toggle CRT scanlines">📺 CRT</button>
+    <button class="ctrl-btn" id="matrix-toggle" title="Toggle Matrix Rain canvas mode">🟢 Matrix</button>
+    <a class="navcta" href="#contact">Say Hello ⚡</a>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="top">
+  <div>
+    <div class="status-badge">
+      <span class="pulse-dot"></span> Available for new Web &amp; Telegram Bot projects
+    </div>
+    
+    <h1>
+      I build <span class="hl-amber">websites</span> that convert &amp; <span class="hl-mint">telegram bots</span> that run 24/7<span class="cursor"></span>
+    </h1>
+    
+    <p class="subhead">
+      I'm Kanha (<b>kanhaxi</b>) — a developer who ships ultra-fast, modern websites and bulletproof Telegram bot automations from concept to live deployment.
+    </p>
+
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#contact">Start a Project →</a>
+      <a class="btn btn-secondary" href="#simulator">Try Live Bot Simulator 🤖</a>
+      <a class="btn btn-ghost" href="#work">Explore Work</a>
+    </div>
+
+    <div class="metrics-bar">
+      <div class="metric">
+        <b>99.98%</b>
+        <span>Bot Server Uptime</span>
+      </div>
+      <div class="metric">
+        <b>&lt; 200ms</b>
+        <span>Bot Response Latency</span>
+      </div>
+      <div class="metric">
+        <b>100%</b>
+        <span>Deployed &amp; Live Guarantee</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terminal / Code Inspector Panel -->
+  <div class="terminal-card">
+    <div class="terminal-bar">
+      <div class="terminal-tabs">
+        <button class="tab active" id="tab-about">about.js</button>
+        <button class="tab" id="tab-bot">bot.py</button>
+        <button class="tab" id="tab-cli">terminal.sh</button>
+      </div>
+      <div class="terminal-actions">
+        <span class="term-chip" onclick="showToast('⚡ All systems operational')">Status: LIVE</span>
+      </div>
+    </div>
+    <div class="terminal-body" id="term-body"></div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+  <div class="reveal">
+    <div class="kicker">who am i</div>
+    <h2>Developer. Bot Architect. Deployment Expert.</h2>
+    <p class="lead">I build clean code solutions that actually work online — not just on localhost.</p>
+  </div>
+
+  <div class="bot-sim-container reveal" style="margin-top: 20px;">
+    <div>
+      <h3 style="font-family:var(--font-mono); font-size:22px; margin-bottom:12px;">Driven by clean architecture &amp; speed</h3>
+      <p style="color:var(--muted); margin-bottom:16px;">Whether you need a high-converting website for your brand or a full-fledged Telegram bot with database integration and admin dashboards, I deliver end-to-end solutions.</p>
+      
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px;">
+        <div style="background:var(--bg-soft); padding:16px; border-radius:10px; border:1px solid var(--border);">
+          <b style="color:var(--amber); font-family:var(--font-mono); display:block; margin-bottom:4px;">🌐 Web Development</b>
+          <span style="font-size:13px; color:var(--muted);">Responsive layouts, modern animations, ultra-fast load times.</span>
+        </div>
+        <div style="background:var(--bg-soft); padding:16px; border-radius:10px; border:1px solid var(--border);">
+          <b style="color:var(--mint); font-family:var(--font-mono); display:block; margin-bottom:4px;">🤖 Telegram Bots</b>
+          <span style="font-size:13px; color:var(--muted);">Automated replies, shop bots, channel management, Webhooks.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cyber SVG Illustration -->
+    <div style="display:flex; justify-content:center;">
+      <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" style="max-width:100%; height:auto;">
+        <defs>
+          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffb020"/>
+            <stop offset="100%" stop-color="#22d3c7"/>
+          </linearGradient>
+        </defs>
+        <rect x="20" y="20" width="360" height="220" rx="16" fill="#0e1420" stroke="#222e42" stroke-width="2"/>
+        <circle cx="50" cy="45" r="5" fill="#ff5f56"/>
+        <circle cx="65" cy="45" r="5" fill="#ffbd2e"/>
+        <circle cx="80" cy="45" r="5" fill="#27c93f"/>
+        
+        <rect x="40" y="80" width="180" height="12" rx="4" fill="url(#grad1)"/>
+        <rect x="40" y="105" width="280" height="8" rx="4" fill="#222e42"/>
+        <rect x="40" y="125" width="220" height="8" rx="4" fill="#222e42"/>
+        <rect x="40" y="145" width="240" height="8" rx="4" fill="#222e42"/>
+        
+        <rect x="250" y="75" width="110" height="130" rx="10" fill="#131b29" stroke="#ffb020" stroke-width="1"/>
+        <circle cx="305" cy="115" r="20" fill="#22d3c7" opacity="0.2"/>
+        <text x="305" y="121" font-family="IBM Plex Mono" font-size="18" fill="#22d3c7" text-anchor="middle">⚡</text>
+        <text x="305" y="160" font-family="IBM Plex Mono" font-size="11" fill="#8c9cb8" text-anchor="middle">BOT ACTIVE</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section id="services">
+  <div class="reveal">
+    <div class="kicker">what I build</div>
+    <h2>Two Specialized Domains</h2>
+    <p class="lead">High-speed websites &amp; reliable 24/7 Telegram bots — standalone or seamlessly integrated together.</p>
+  </div>
+
+  <div class="service-grid reveal">
+    <div class="service-card">
+      <div class="service-header">
+        <div class="service-icon">🌐</div>
+        <h3>Web Development</h3>
+      </div>
+      <p>Clean, ultra-fast websites designed to captivate visitors and deliver results on all devices.</p>
+      <ul class="service-list">
+        <li>Personal Portfolios &amp; Business Landing Pages</li>
+        <li>Custom Interactive Animations &amp; Dynamic UI</li>
+        <li>Mobile-First Responsive Architecture</li>
+        <li>Hosting Setup, Domain Binding &amp; SSL Deployment</li>
+      </ul>
+    </div>
+
+    <div class="service-card bot">
+      <div class="service-header">
+        <div class="service-icon">🤖</div>
+        <h3>Telegram Bot Development</h3>
+      </div>
+      <p>Automated Telegram bots that handle users, orders, group moderation, and webhooks continuously.</p>
+      <ul class="service-list">
+        <li>Auto-Reply &amp; Customer Support Assistants</li>
+        <li>Group &amp; Channel Automated Moderation</li>
+        <li>Database Integration (MongoDB / SQLite)</li>
+        <li>Deployed on 24/7 Cloud Servers (VPS / Heroku / Render)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Tech Stack Marquee -->
+  <div class="stack-marquee reveal">
+    <div class="stack-track">
+      <div class="stackpill">⚡ HTML5 &amp; CSS3</div>
+      <div class="stackpill">⚡ JavaScript (ES6+)</div>
+      <div class="stackpill">⚡ Python (python-telegram-bot / Telethon)</div>
+      <div class="stackpill">⚡ Node.js &amp; Express</div>
+      <div class="stackpill">⚡ Telegram Webhooks &amp; REST APIs</div>
+      <div class="stackpill">⚡ MongoDB &amp; Databases</div>
+      <div class="stackpill">⚡ VPS Server Deployment</div>
+      <div class="stackpill">⚡ Git &amp; Cloud Architecture</div>
+      <!-- Duplicate for seamless loop -->
+      <div class="stackpill">⚡ HTML5 &amp; CSS3</div>
+      <div class="stackpill">⚡ JavaScript (ES6+)</div>
+      <div class="stackpill">⚡ Python (python-telegram-bot / Telethon)</div>
+      <div class="stackpill">⚡ Node.js &amp; Express</div>
+      <div class="stackpill">⚡ Telegram Webhooks &amp; REST APIs</div>
+    </div>
+  </div>
+</section>
+
+<!-- Interactive Live Telegram Bot Simulator -->
+<section id="simulator">
+  <div class="reveal">
+    <div class="kicker">interactive demo</div>
+    <h2>Test a Live Telegram Bot Right Here</h2>
+    <p class="lead">Click quick command buttons below or type a message to see how responsive a Telegram bot can be!</p>
+  </div>
+
+  <div class="bot-sim-container reveal">
+    <div>
+      <h3 style="font-family:var(--font-mono); font-size:20px; color:var(--amber); margin-bottom:12px;">Live Bot Simulation</h3>
+      <p style="color:var(--muted); margin-bottom:20px;">This simulator demonstrates custom Telegram bot logic, command handlers, and quick-reply keyboard layouts.</p>
+      
+      <div style="background:var(--bg-soft); padding:18px; border-radius:10px; border:1px solid var(--border); font-family:var(--font-mono); font-size:13px;">
+        <span style="color:var(--mint); display:block; margin-bottom:8px;">💡 Try clicking these triggers:</span>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="tg-btn" data-action="/start">/start</button>
+          <button class="tg-btn" data-action="Tell me services">🚀 Services</button>
+          <button class="tg-btn" data-action="Check bot speed">⚡ Speed Test</button>
+          <button class="tg-btn" data-action="Direct Contact">📞 Contact</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone Mockup Widget -->
+    <div class="tg-phone-mockup">
+      <div class="tg-header">
+        <div class="tg-avatar">K</div>
+        <div class="tg-info">
+          <h4>Kanhaxi Assistant Bot</h4>
+          <p>bot • online 24/7</p>
+        </div>
+      </div>
+
+      <div class="tg-chat-body" id="tg-chat-body">
+        <div class="tg-msg bot">
+          👋 Hey! I'm <b>kanhaxi's</b> automated assistant. Type a message or click a command below!
+          <div class="tg-msg-time">Just now</div>
+        </div>
+      </div>
+
+      <div class="tg-quick-reply">
+        <button class="tg-btn" data-action="/start">/start</button>
+        <button class="tg-btn" data-action="Tell me services">🚀 Services</button>
+        <button class="tg-btn" data-action="Check bot speed">⚡ Speed Test</button>
+        <button class="tg-btn" data-action="Contact Kanha">📞 Contact</button>
+      </div>
+
+      <div class="tg-input-area">
+        <input type="text" id="tg-msg-input" placeholder="Write a message..." />
+        <button class="tg-send-btn" id="tg-send-btn">➤</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Selected Work Section -->
+<section id="work">
+  <div class="reveal">
+    <div class="kicker">portfolio</div>
+    <h2>Featured Projects</h2>
+    <p class="lead">A showcase of websites and Telegram bots built with clean code and real-time reliability.</p>
+  </div>
+
+  <div class="filter-tabs reveal">
+    <button class="filter-btn active" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="web">Websites</button>
+    <button class="filter-btn" data-filter="bot">Telegram Bots</button>
+    <button class="filter-btn" data-filter="full">Full-Stack Integration</button>
+  </div>
+
+  <div class="work-grid reveal">
+    <div class="work-card" data-category="web">
+      <div>
+        <span class="work-tag">Website</span>
+        <h4>Business High-Converting Landing Page</h4>
+        <p>Ultra-fast responsive single-page application built with custom animations and lead capturing forms.</p>
+      </div>
+      <div class="work-tech">
+        <span>HTML5/CSS3</span>
+        <span>JavaScript</span>
+        <span>Deployed</span>
+      </div>
+    </div>
+
+    <div class="work-card" data-category="bot">
+      <div>
+        <span class="work-tag" style="color:var(--mint); border-color:rgba(34,211,199,0.3); background:rgba(34,211,199,0.1);">Telegram Bot</span>
+        <h4>Automated Customer Support &amp; FAQ Bot</h4>
+        <p>Telegram bot providing instant auto-replies, keyword matching, user lead collection, and admin broadcast messaging.</p>
+      </div>
+      <div class="work-tech">
+        <span>Python</span>
+        <span>Telegram API</span>
+        <span>24/7 VPS Uptime</span>
+      </div>
+    </div>
+
+    <div class="work-card" data-category="full">
+      <div>
+        <span class="work-tag" style="color:var(--rose); border-color:rgba(244,63,94,0.3); background:rgba(244,63,94,0.1);">Full-Stack</span>
+        <h4>Website Form to Telegram Bot Notifier</h4>
+        <p>Web contact forms connected via Webhooks to deliver instant client alerts straight to a private Telegram chat.</p>
+      </div>
+      <div class="work-tech">
+        <span>Node.js</span>
+        <span>Webhooks</span>
+        <span>Telegram Bot</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Interactive Project Scope & Time Builder -->
+<section id="estimator">
+  <div class="reveal">
+    <div class="kicker">project builder</div>
+    <h2>Project Scope &amp; Timeline Estimator</h2>
+    <p class="lead">Select your project requirements below to see an estimated delivery timeframe and generate a custom proposal.</p>
+  </div>
+
+  <div class="estimator-box reveal">
+    <div class="estimator-grid">
+      <div>
+        <div class="option-group">
+          <label>1. Select Project Type</label>
+          <div class="select-cards" id="type-select">
+            <div class="opt-card selected" data-type="web">🌐 Website</div>
+            <div class="opt-card" data-type="bot">🤖 Telegram Bot</div>
+            <div class="opt-card" data-type="full">⚡ Web + Bot Integration</div>
+          </div>
+        </div>
+
+        <div class="option-group">
+          <label>2. Add Extra Features</label>
+          <div class="select-cards" id="feature-select">
+            <div class="opt-card selected" data-feat="responsive">📱 Responsive Mobile</div>
+            <div class="opt-card" data-feat="database">🗄️ Database Setup</div>
+            <div class="opt-card" data-feat="hosting">☁️ 24/7 Hosting Setup</div>
+            <div class="opt-card" data-feat="express">🚀 Express Delivery</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-summary">
+        <div>
+          <span style="font-family:var(--font-mono); font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.8px;">Estimated Scope &amp; Delivery</span>
+          <div style="font-family:var(--font-mono); font-size:22px; font-weight:700; color:var(--amber); margin:12px 0 6px 0;" id="calc-scope-val">Full Custom Setup</div>
+          <div style="font-family:var(--font-mono); font-size:16px; color:var(--mint);" id="calc-time-val">3 Days Delivery</div>
+        </div>
+        
+        <div style="margin-top:20px;">
+          <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">Includes 100% full deployment on live server and post-launch support.</p>
+          <a class="btn btn-primary" id="tg-order-link" href="https://t.me/kanhaxi" target="_blank" style="width:100%; justify-content:center;">Discuss &amp; Get Custom Quote →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+  <div class="reveal">
+    <div class="kicker">get in touch</div>
+    <h2>Let's Build Your Project</h2>
+    <p class="lead">Ready to bring your website or Telegram bot to life? Drop a message on Telegram!</p>
+  </div>
+
+  <div class="contact-grid reveal">
+    <div class="contact-card">
+      <h3 style="font-family:var(--font-mono); font-size:22px; color:var(--amber);">Kanha (kanhaxi)</h3>
+      <p style="color:var(--muted);">I respond quickly on Telegram and can get your project started right away.</p>
+      
+      <div style="margin-top:10px;">
+        <span style="font-family:var(--font-mono); font-size:12px; color:var(--mint); display:block; margin-bottom:4px;">⚡ Direct Contact:</span>
+        <a class="contact-link" href="https://t.me/kanhaxi" target="_blank">
+          <span>Message on Telegram</span>
+          <b style="color:var(--amber);">@kanhaxi ↗</b>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-card" style="justify-content:center;">
+      <div style="font-family:var(--font-mono); font-size:13px; color:var(--muted); display:flex; flex-direction:column; gap:12px;">
+        <div><b>📍 Location:</b> Remote / Global</div>
+        <div><b>⏰ Response Time:</b> Within a few hours</div>
+        <div><b>🟢 Availability:</b> Open for freelance &amp; custom contracts</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div>
+    kanha<span style="color:var(--mint);">xiii</span> — Web Dev &amp; Telegram Bots
+  </div>
+  <div>
+    Built with HTML, CSS, JS &amp; Cyber Ambient Energy
+  </div>
+</footer>
+
+<!-- Toast Notifications -->
+<div id="toast">Notifications Ready</div>
+
+<script src="app.js"></script>
+</body>
+</html>
